@@ -91,4 +91,5 @@ public class AtivoDAOBD implements AtivoDAO {
 
         return ativos;
     }
+
 }

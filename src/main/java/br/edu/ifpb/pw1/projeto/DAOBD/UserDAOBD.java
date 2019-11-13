@@ -2,11 +2,11 @@ package br.edu.ifpb.pw1.projeto.DAOBD;
 
 import br.edu.ifpb.pw1.projeto.DAO.Conexao;
 import br.edu.ifpb.pw1.projeto.DAO.UserDAO;
-import br.edu.ifpb.pw1.projeto.model.Carteira;
 import br.edu.ifpb.pw1.projeto.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +22,7 @@ public class UserDAOBD implements UserDAO {
 
     @Override
     public void CadastrarUser(User user) throws Exception {
+        user.setId(obterNumID());
         this.conexao.conectar();
         String sql = "INSERT INTO USER (id, nome, email, senha, nascimento, idCarteira)" + "VALUES (?, ?, ?,?,?,?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
@@ -129,5 +130,24 @@ public class UserDAOBD implements UserDAO {
         this.conexao.desconectar();
 
         return Optional.ofNullable(user);
+    }
+    private Long obterNumID() throws Exception {
+        String sql = "SELECT MAX(id) maior FROM User";
+        ResultSet rs = null;
+        Statement statement = null;
+        this.conexao.conectar();
+
+        try {
+            statement = this.conexao.getConexao().createStatement();
+            rs = statement.executeQuery(sql);
+
+            if (rs.next()) {
+                Long maior = rs.getLong("maior");
+                return maior++;
+            }
+            return 1L ;
+        } finally {
+            conexao.desconectar();
+        }
     }
 }

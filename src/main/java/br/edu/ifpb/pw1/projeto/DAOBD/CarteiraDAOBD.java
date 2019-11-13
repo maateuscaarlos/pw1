@@ -4,8 +4,10 @@ import br.edu.ifpb.pw1.projeto.DAO.CarteiraDAO;
 import br.edu.ifpb.pw1.projeto.DAO.Conexao;
 import br.edu.ifpb.pw1.projeto.model.Carteira;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 
 public class CarteiraDAOBD implements CarteiraDAO {
@@ -17,6 +19,8 @@ public class CarteiraDAOBD implements CarteiraDAO {
 
     @Override
     public void CadastrarCarteira(Carteira carteira) throws Exception {
+        carteira.setId(obterNumID());
+        carteira.setValorCaixa(new BigDecimal(0.0));
         this.conexao.conectar();
         String sql = "INSERT INTO CARTEIRA (id, valorCaixa)" + "VALUES (?, ?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
@@ -59,5 +63,24 @@ public class CarteiraDAOBD implements CarteiraDAO {
         this.conexao.desconectar();
 
         return Optional.ofNullable(carteira);
+    }
+    private Long obterNumID() throws Exception {
+        String sql = "SELECT MAX(id) maior FROM Carteira";
+        ResultSet rs = null;
+        Statement statement = null;
+        this.conexao.conectar();
+
+        try {
+            statement = this.conexao.getConexao().createStatement();
+            rs = statement.executeQuery(sql);
+
+            if (rs.next()) {
+                Long maior = rs.getLong("maior");
+                return maior++;
+            }
+            return 1L ;
+        } finally {
+            conexao.desconectar();
+        }
     }
 }

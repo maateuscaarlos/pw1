@@ -20,7 +20,7 @@ public class CadastrarUserCommand implements Command {
         String senha = request.getParameter("senha");
         String nascimento = request.getParameter("dataNasc");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         LocalDate date = LocalDate.parse(nascimento,formatter);
 
         User user = new User();

@@ -37,7 +37,7 @@ public class CadastrarUserCommand implements Command {
         UserDAO userDAO = DaoFactory.criarUserDAO();
         userDAO.CadastrarUser(user);
 
-        response.sendRedirect("login.html");
+        response.sendRedirect("Login.html");
 
 
 

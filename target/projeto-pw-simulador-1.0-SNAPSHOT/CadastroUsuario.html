@@ -7,28 +7,24 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="html/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="html/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <div class="container">
       <h2 class="indigo darken-4"><center class="white-text">Rende Fácil</center></h2>
     <div class="container">
-    <form class="col s12 indigo-text text-darken-4" action="FrontController?command=CadastrarUserCommand" method="post">
+    <form class="col s12 indigo-text text-darken-4" action="Controller?command=CadastrarUserCommand" method="post">
       <div class="row">
         <div class="input-field col s6">
-          <input  id="first_name" type="text" class="validate">
-          <label for="first_name">Nome</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Sobrenome</label>
+          <input  id="nome" type="text" class="validate">
+          <label for="nome">Nome</label>
         </div>
       </div>
       <div class="row">
           <div class="input-field col s12">
-            <input id="data" type="date" class="validate">
-            <label for="data">Data de Nascimento</label>
+            <input id="dataNasc" type="text" class="validate">
+            <label for="dataNasc">Data de Nascimento</label>
           </div>
       </div>
       <div class="row">
@@ -39,8 +35,8 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Senha</label>
+          <input id="senha" type="password" class="validate">
+          <label for="senha">Senha</label>
         </div>
       </div>
       <div style="float:right">
@@ -56,8 +52,8 @@
 </div>
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="html/js/materialize.js"></script>
-  <script src="html/js/init.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
   </body>
 </html>

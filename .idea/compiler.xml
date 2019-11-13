@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="projeto-pw-simulador" options="-endorseddirs C:\Users\elmat\Documents\NetBeansProjects\projeto-pw-simulador\target/endorsed" />
+      <module name="projeto-pw-simulador" options="-endorseddirs $PROJECT_DIR$/target/endorsed" />
     </option>
   </component>
 </project>

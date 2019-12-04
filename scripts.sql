@@ -1,34 +1,34 @@
 ﻿CREATE TABLE CARTEIRA (
-	id BIGINT,
+	id serial,
 	valorCaixa FLOAT(10) NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE ATIVO (
-	id BIGINT,
+	id serial,
 	nome VARCHAR(100) NOT NULL,
 	precoDeCompra FLOAT(10) NOT NULL,
 	quantidade FLOAT(10) NOT NULL,
-	idCarteira BIGINT NOT NULL,
+	idCarteira serial NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (idCarteira) REFERENCES CARTEIRA(id)
 );
 
 CREATE TABLE USUARIO (
-	id BIGINT,
+	id serial,
 	nome VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
 	senha VARCHAR (50) NOT NULL,
 	nascimento DATE NOT NULL,
-	idCarteira BIGINT NOT NULL,
+	idCarteira serial NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (idCarteira) REFERENCES CARTEIRA(id)
 );
 
 CREATE TABLE TRANSACAO (
-	id BIGINT,
-	idAtivo BIGINT NOT NULL,
-	idUser BIGINT NOT NULL,
+	id serial,
+	idAtivo serial NOT NULL,
+	idUser serial NOT NULL,
 	dia DATE NOT NULL,
 	valor FLOAT(10) NOT NULL,
 	PRIMARY KEY (id),

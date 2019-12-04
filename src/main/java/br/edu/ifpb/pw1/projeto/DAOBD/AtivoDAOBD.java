@@ -23,14 +23,14 @@ public class AtivoDAOBD implements AtivoDAO {
     @Override
     public void CadastrarAtivo(Ativo ativo, Long idCarteira) throws Exception {
         this.conexao.conectar();
-        String sql = "INSERT INTO ATIVO (id, nome, precoDeCompra, quantidade, idCarteira)" + "VALUES (?, ?, ?,?,?)";
+        String sql = "INSERT INTO ATIVO (nome, precoDeCompra, quantidade, idCarteira)" + "VALUES (?, ?,?,?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
 
-        statement.setLong(1, ativo.getId());
-        statement.setString(2, ativo.getNome());
-        statement.setBigDecimal(3, ativo.getPrecoDeCompra());
-        statement.setBigDecimal(4, ativo.getQuantidade());
-        statement.setLong(5,idCarteira);
+
+        statement.setString(1, ativo.getNome());
+        statement.setBigDecimal(2, ativo.getPrecoDeCompra());
+        statement.setBigDecimal(3, ativo.getQuantidade());
+        statement.setLong(4,idCarteira);
 
 
         statement.executeUpdate();

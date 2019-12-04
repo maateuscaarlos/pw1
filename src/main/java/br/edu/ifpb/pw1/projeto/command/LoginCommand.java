@@ -1,7 +1,9 @@
 package br.edu.ifpb.pw1.projeto.command;
 
+import br.edu.ifpb.pw1.projeto.DAO.CarteiraDAO;
 import br.edu.ifpb.pw1.projeto.DAO.DaoFactory;
 import br.edu.ifpb.pw1.projeto.DAO.UserDAO;
+import br.edu.ifpb.pw1.projeto.model.Carteira;
 import br.edu.ifpb.pw1.projeto.model.User;
 
 import javax.servlet.ServletException;
@@ -21,11 +23,15 @@ public class LoginCommand implements Command {
         UserDAO userDAO = DaoFactory.criarUserDAO();
         User user = userDAO.autenticarUser(email, senha).orElseThrow(() -> new ServletException());
 
+        CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
+        Carteira carteiaUser = carteiraDAO.buscarCarteira(user.getCarteira().getId()).orElseThrow(() -> new ServletException());;
+
+
 
         HttpSession sessao = request.getSession();
         sessao.setAttribute("login", user);
 
-        request.getRequestDispatcher("telaUser.jsp").forward(request, response);
+        request.getRequestDispatcher("usuario.html").forward(request, response);
 
     }
 }

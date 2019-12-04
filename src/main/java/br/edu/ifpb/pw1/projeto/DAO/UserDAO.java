@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDAO {
-    public void CadastrarUser(User user) throws Exception;
+    public boolean cadastrarUser(User user) throws Exception;
 
     public void removerUser(Long id) throws Exception;
 

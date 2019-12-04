@@ -29,32 +29,32 @@
           <span style="font-size: 150%; font-family: Arial, Helvetica, sans-serif;">Cadastro</span>
         </div>
         <div class="container">
-          <form class="col s12" action="Controller?command=LoginCommand" method="post">
+          <form class="col s12" action="Controller?command=CadastrarUserCommand" method="post">
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">person</i>
-                <input id="nome" type="text" class="validate">
+                <input id="nome" name="nome" type="text" class="validate">
                 <label for="nome">Nome</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">today</i>
-                <input id="dataNasc" type="text" class="validate">
+                <input id="dataNasc" name="dataNasc" type="text" class="validate">
                 <label for="dataNasc">Data de Nascimento</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">email</i>
-                <input id="email" type="email" class="validate">
+                <input id="email" name="email" type="email" class="validate">
                 <label for="email">Email</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input id="senha" type="password" class="validate">
+                <input id="senha" name="senha" type="password" class="validate">
                 <label for="senha">Senha</label>
               </div>
             </div>

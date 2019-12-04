@@ -3,6 +3,7 @@ package br.edu.ifpb.pw1.projeto.command;
 import br.edu.ifpb.pw1.projeto.DAO.CarteiraDAO;
 import br.edu.ifpb.pw1.projeto.DAO.DaoFactory;
 import br.edu.ifpb.pw1.projeto.DAO.UserDAO;
+import br.edu.ifpb.pw1.projeto.DAOBD.UserDAOBD;
 import br.edu.ifpb.pw1.projeto.model.Carteira;
 import br.edu.ifpb.pw1.projeto.model.User;
 
@@ -20,7 +21,7 @@ public class CadastrarUserCommand implements Command {
         String senha = request.getParameter("senha");
         String nascimento = request.getParameter("dataNasc");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(nascimento,formatter);
 
         User user = new User();
@@ -29,18 +30,16 @@ public class CadastrarUserCommand implements Command {
         user.setSenha(senha);
         user.setNascimento(date);
 
-        Carteira carteira = new Carteira();
+
+        UserDAO userDAO = new UserDAOBD();
         CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
-        carteiraDAO.CadastrarCarteira(carteira);
+        Carteira carteira = carteiraDAO.cadastrarCarteira();
+        user.setCarteira(carteira);
 
-
-        UserDAO userDAO = DaoFactory.criarUserDAO();
-        userDAO.CadastrarUser(user);
-
-        response.sendRedirect("index.html");
-
-
-
+        if(userDAO.cadastrarUser(user)){
+            response.sendRedirect("index.html");
+        }
+        else carteiraDAO.removerCarteira(carteira.getId());
 
     }
 }

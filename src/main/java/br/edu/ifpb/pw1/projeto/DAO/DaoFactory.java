@@ -15,14 +15,20 @@ public class DaoFactory {
     private static String TIPO_DAO;
 
     static {
-        InputStream  inputStream = DaoFactory.class.getResourceAsStream("config.properties");
-        Properties properties = new Properties();
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (InputStream input = DaoFactory.class.getClassLoader().getResourceAsStream("config.properties")) {
+
+            Properties prop = new Properties();
+            if (input == null) {
+                System.out.println("Não dá certo");
+
+            }
+            prop.load(input);
+            TIPO_DAO =  prop.getProperty("banco.tipo");
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        TIPO_DAO = properties.getProperty("dao.tipo");
+
+
     }
 
     public static UserDAO criarUserDAO() throws SQLException {

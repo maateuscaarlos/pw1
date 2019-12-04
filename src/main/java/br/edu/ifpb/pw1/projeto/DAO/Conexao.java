@@ -16,17 +16,24 @@ public class Conexao {
     private static String driver;
 
     static {
-        InputStream inputStream = Conexao.class.getResourceAsStream("config.properties");
-        Properties properties = new Properties();
-        try {
-            properties.load(inputStream);
-            URL = properties.getProperty("banco.url");
-            usuario = properties.getProperty("banco.usuario");
-            senha = properties.getProperty("banco.senha");
-            driver = properties.getProperty("banco.driver");
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (InputStream input = DaoFactory.class.getClassLoader().getResourceAsStream("config.properties")) {
+
+            Properties prop = new Properties();
+            if (input == null) {
+                System.out.println("Não dá certo");
+
+            }
+            prop.load(input);
+
+            URL =  prop.getProperty("banco.url");
+            usuario =  prop.getProperty("banco.usuario");
+            senha =  prop.getProperty("banco.senha");
+            driver =  prop.getProperty("banco.driver");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
+
     }
 
     public void conectar() throws Exception {

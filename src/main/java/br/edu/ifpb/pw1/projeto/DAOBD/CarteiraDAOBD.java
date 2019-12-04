@@ -18,19 +18,18 @@ public class CarteiraDAOBD implements CarteiraDAO {
     }
 
     @Override
-    public void CadastrarCarteira(Carteira carteira) throws Exception {
-        carteira.setId(obterNumID());
-        carteira.setValorCaixa(new BigDecimal(0.0));
+    public Carteira cadastrarCarteira() throws Exception {
+
         this.conexao.conectar();
-        String sql = "INSERT INTO CARTEIRA (id, valorCaixa)" + "VALUES (?, ?)";
+        String sql = "INSERT INTO CARTEIRA (valorCaixa)" + "VALUES (?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
 
-        statement.setLong(1, carteira.getId());
-        statement.setBigDecimal(2, carteira.getValorCaixa());
+        statement.setBigDecimal(1, new BigDecimal(10000.00));
 
         statement.executeUpdate();
 
         this.conexao.desconectar();
+        return obterUltimaCarteira();
 
     }
 
@@ -64,23 +63,39 @@ public class CarteiraDAOBD implements CarteiraDAO {
 
         return Optional.ofNullable(carteira);
     }
-    private Long obterNumID() throws Exception {
-        String sql = "SELECT MAX(id) maior FROM Carteira";
+
+    @Override
+    public void reinicarSaldo(Long id) throws Exception {
+        this.conexao.conectar();
+        String sql = "UPDATE CARTEIRA SET valorCaixa = 10000.00 WHERE id = ?" + "VALUES (?)";
+        PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+
+        statement.setLong(1, id);
+
+        statement.executeUpdate();
+
+        this.conexao.desconectar();
+        }
+
+
+    private Carteira obterUltimaCarteira() throws Exception {
+        String sql = "SELECT * FROM Carteira ORDER BY id DESC LIMIT 1";
         ResultSet rs = null;
         Statement statement = null;
         this.conexao.conectar();
 
-        try {
-            statement = this.conexao.getConexao().createStatement();
-            rs = statement.executeQuery(sql);
 
-            if (rs.next()) {
-                Long maior = rs.getLong("maior");
-                return maior++;
-            }
-            return 1L ;
-        } finally {
-            conexao.desconectar();
+        statement = this.conexao.getConexao().createStatement();
+        rs = statement.executeQuery(sql);
+        Carteira carteira = null;
+        while (rs.next()) {
+            carteira = new Carteira();
+            carteira.setId(rs.getLong("id"));
+            carteira.setValorCaixa(rs.getBigDecimal("valorCaixa"));
         }
+
+
+            conexao.desconectar();
+            return carteira;
     }
 }

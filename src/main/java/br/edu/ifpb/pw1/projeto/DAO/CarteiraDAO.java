@@ -6,9 +6,11 @@ import java.util.Optional;
 
 public interface CarteiraDAO {
 
-    public void CadastrarCarteira(Carteira carteira) throws Exception;
+    public Carteira cadastrarCarteira() throws Exception;
 
     public void removerCarteira(Long id) throws Exception;
 
     public Optional<Carteira> buscarCarteira(Long id) throws Exception;
+
+    public void reinicarSaldo(Long id)throws Exception;
 }

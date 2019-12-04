@@ -25,13 +25,15 @@ public class LoginCommand implements Command {
 
         CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
         Carteira carteiaUser = carteiraDAO.buscarCarteira(user.getCarteira().getId()).orElseThrow(() -> new ServletException());
+        user.setCarteira(carteiaUser);
 
 
 
         HttpSession sessao = request.getSession();
         sessao.setAttribute("login", user);
+        sessao.setAttribute("carteira", carteiaUser);
 
-        request.getRequestDispatcher("usuario.html").forward(request, response);
+        request.getRequestDispatcher("usuario.jsp").forward(request, response);
 
     }
 }

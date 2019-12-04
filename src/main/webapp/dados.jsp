@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,7 @@
 <nav class="green darken-3">
     <div class="nav-wrapper container">
         <ul class="right hide-on-med-and-down">
-            <li> <a class="dropdown-trigger" href="#" data-target="usuario">Usuário</a></li>
+            <li> <a class="dropdown-trigger" href="#" data-target="usuario">${sessionScope.login.nome}</a></li>
             <li><a href="telaNegociacao.html">Ativos</a></li>
             <li><a href="#">Histórico</a></li>
         </ul>
@@ -38,7 +40,7 @@
                 <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
             </tr>
             <tr>
-                <td><!-- recuperar valor da carteiraa --> R$ 10000,00</td>
+                <td>${sessionScope.login.carteira.valorCaixa}</td>
             </tr>
         </table>
     </div>
@@ -57,15 +59,15 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        <td>Alvin</td>
+                        <td>${sessionScope.login.nome}</td>
                     </tr>
                     <tr>
                         <th>E-mail</th>
-                        <td> alvindogueto123@email.com</td>
+                        <td> ${sessionScope.login.email}</td>
                     </tr>
                     <tr>
                         <th>Nascimento</th>
-                        <td>01/01/1998</td>
+                        <td>${sessionScope.login.nascimento}</td>
                     </tr>
                     </thead>
 
@@ -73,7 +75,7 @@
                 </table>
                 <div style="margin: 5%">
                     <a class="btn-flat modal-trigger" href="#editar"><i class="material-icons">edit</i>Editar Dados</a>
-                    <a class="btn-flat"><i class="material-icons">refresh</i> Resetar Carteira </a>
+                    <a class="btn-flat"><i class="material-icons" href="../reiniciarSaldo">refresh</i> Resetar Carteira </a>
                 </div>
             </div>
             <div>
@@ -81,7 +83,7 @@
                 <div style="width: 70%;" id="editar" class="modal">
                     <div class="modal-content">
                         <div style="margin-left: 10%; margin-right: 10%" class="row">
-                            <form class="col s12" action="Controller?command=CadastrarUserCommand" method="post">
+                            <form class="col s12" action="Controller?command=EditarUserCommand" method="post">
                                 <h4 style="margin-bottom: 5%; margin-top: 0%" class="center">Edite seus Dados de usuário:</h4>
                                 <div class="row">
                                     <div class="input-field col s6">
@@ -105,17 +107,15 @@
 
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix">lock</i>
-                                        <input id="confirmarsenha" name="senha" type="password" class="validate">
+                                        <input id="confirmarsenha" name="confirmarsenha" type="password" class="validate">
                                         <label for="confirmarsenha">Confirmar Senha</label>
                                     </div>
                                 </div>
                                 <div style="float:right">
-                                    <a class="btn waves-effect waves-light green darken-3" type="submit" name="action">Salvar
+                                    <button class="btn waves-effect waves-light green darken-3" type="action" name="action">Salvar
                                         <i class="material-icons right">send</i>
-                                    </a>
-                                    <a class="btn waves-effect waves-light modal-close green darken-3" type=" submit" name="action">Cancelar
-                                        <i class="material-icons right">cancel</i>
-                                    </a>
+                                    </button>
+
                                 </div>
                             </form>
                         </div>

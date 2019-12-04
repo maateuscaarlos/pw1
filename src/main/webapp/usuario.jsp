@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +26,7 @@
     </div>
 </nav>
 <ul id='usuario' class="dropdown-content green lighten-5">
-    <li><a class="black-text" href="dados.html">Dados</a></li>
+    <li><a class="black-text" href="dados.jsp">Dados</a></li>
     <li><a class="black-text modal-trigger" href="#carteira">Carteira</a></li>
     <li><a class="black-text" href="#!">Logout</a></li>
 </ul>
@@ -38,7 +40,7 @@
                 <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
             </tr>
             <tr>
-                <td name="carteira"><!-- recuperar valor da carteiraa --> R$ 10000,00</td>
+                <td name="carteira">${sessionScope.login.carteira.valorCaixa}</td>
             </tr>
         </table>
     </div>

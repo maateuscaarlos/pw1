@@ -64,6 +64,18 @@ public class UserDAOBD implements UserDAO {
 
     @Override
     public void atualizarUser(User user) throws Exception {
+        this.conexao.conectar();
+        String sql = "UPDATE usuario SET nome = ? , senha = ? , email = ?  WHERE id = ?";
+        PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+        statement.setString(1, user.getNome());
+        statement.setString(2, user.getSenha());
+        statement.setString(3, user.getEmail());
+
+        statement.setLong(4, user.getId());
+
+        statement.executeUpdate();
+
+        this.conexao.desconectar();
 
     }
 

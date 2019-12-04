@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>Login</title>
+    <title>Usuario</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,9 +25,27 @@
     </nav>
     <ul id='usuario' class="dropdown-content green lighten-5">
         <li><a class="black-text" href="#!">Dados</a></li>
-        <li><a class="black-text" href="#!">Carteira</a></li>
+        <li><a class="black-text modal-trigger" href="#carteira">Carteira</a></li>
         <li><a class="black-text" href="#!">Logout</a></li>
     </ul>
+    <div style="width: 35%; height: 60%" id="carteira" class="modal green lighten-5">
+        <div class="modal-content">
+            <div class="green darken-3">
+                <label style="font-size: 32pt;" class="white-text">Carteira:</label>
+            </div>
+            <table>
+                <tr>
+                    <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
+                </tr>
+                <tr>
+                    <td><!-- recuperar valor da carteiraa --> R$ 10000,00</td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer green lighten-5">
+            <a href="#!" class="modal-close btn-flat text-darken-3 green-text">Fechar</a>
+        </div>
+    </div>
     <div class="row" style="margin: 2%;">
         <div class="col s12" style="margin-top: 5%;">
             <div class="col s4">

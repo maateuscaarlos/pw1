@@ -24,7 +24,7 @@ public class LoginCommand implements Command {
         User user = userDAO.autenticarUser(email, senha).orElseThrow(() -> new ServletException());
 
         CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
-        Carteira carteiaUser = carteiraDAO.buscarCarteira(user.getCarteira().getId()).orElseThrow(() -> new ServletException());;
+        Carteira carteiaUser = carteiraDAO.buscarCarteira(user.getCarteira().getId()).orElseThrow(() -> new ServletException());
 
 
 

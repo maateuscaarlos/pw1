@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-    <title>Usuario</title>
+    <title>Rende Fácil</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,39 +13,39 @@
 </head>
 
 <body>
-    <nav class="green darken-3">
-        <div class="nav-wrapper container">
-            <ul class="right hide-on-med-and-down">
-                <li> <a class="dropdown-trigger" href="#" data-target="usuario">Usuário</a></li>
-                <li><a href="#">Ativos</a></li>
-                <li><a href="#">Histórico</a></li>
-            </ul>
-            <a href="#" class="brand-logo">Rende Fácil</a>
-        </div>
-    </nav>
-    <ul id='usuario' class="dropdown-content green lighten-5">
-        <li><a class="black-text" href="#!">Dados</a></li>
-        <li><a class="black-text modal-trigger" href="#carteira">Carteira</a></li>
-        <li><a class="black-text" href="#!">Logout</a></li>
-    </ul>
-    <div style="width: 35%; height: 60%" id="carteira" class="modal green lighten-5">
-        <div class="modal-content">
-            <div class="green darken-3">
-                <label style="font-size: 32pt;" class="white-text">Carteira:</label>
-            </div>
-            <table>
-                <tr>
-                    <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
-                </tr>
-                <tr>
-                    <td><!-- recuperar valor da carteiraa --> R$ 10000,00</td>
-                </tr>
-            </table>
-        </div>
-        <div class="modal-footer green lighten-5">
-            <a href="#!" class="modal-close btn-flat text-darken-3 green-text">Fechar</a>
-        </div>
+<nav class="green darken-3">
+    <div class="nav-wrapper container">
+        <ul class="right hide-on-med-and-down">
+            <li> <a class="dropdown-trigger" href="#" data-target="usuario">Usuário</a></li>
+            <li><a href="telaNegociacao.html">Ativos</a></li>
+            <li><a href="#">Histórico</a></li>
+        </ul>
+        <a href="usuario.html" class="brand-logo">Rende Fácil</a>
     </div>
+</nav>
+<ul id='usuario' class="dropdown-content green lighten-5">
+    <li><a class="black-text" href="dados.html">Dados</a></li>
+    <li><a class="black-text modal-trigger" href="#carteira">Carteira</a></li>
+    <li><a class="black-text" href="#!">Logout</a></li>
+</ul>
+<div style="width: 35%; height: 60%" id="carteira" class="modal green lighten-5">
+    <div class="modal-content">
+        <div class="green darken-3">
+            <label style="font-size: 32pt;" class="white-text">Carteira:</label>
+        </div>
+        <table>
+            <tr>
+                <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
+            </tr>
+            <tr>
+                <td name="carteira"><!-- recuperar valor da carteiraa --> R$ 10000,00</td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer green lighten-5">
+        <a href="#!" class="modal-close btn-flat text-darken-3 green-text">Fechar</a>
+    </div>
+</div>
     <div class="row" style="margin: 2%;">
         <div class="col s12" style="margin-top: 5%;">
             <div class="col s4">

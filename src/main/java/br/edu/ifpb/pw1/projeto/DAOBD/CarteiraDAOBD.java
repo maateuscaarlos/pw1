@@ -47,9 +47,10 @@ public class CarteiraDAOBD implements CarteiraDAO {
     @Override
     public Optional<Carteira> buscarCarteira(Long id) throws Exception {
         this.conexao.conectar();
-        String sql = "SELECT * FROM user WHERE id = ?";
+        String sql = "SELECT * FROM carteira WHERE id = ?";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
-        statement.setLong(1, id);
+        int idCarteira = Integer.parseInt(String.valueOf(id));
+        statement.setInt(1, idCarteira);
         ResultSet result = statement.executeQuery();
         Carteira carteira = null;
         while (result.next()) {

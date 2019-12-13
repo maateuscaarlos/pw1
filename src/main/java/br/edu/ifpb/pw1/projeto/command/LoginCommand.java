@@ -33,7 +33,7 @@ public class LoginCommand implements Command {
         sessao.setAttribute("login", user);
         sessao.setAttribute("carteira", carteiaUser);
 
-        request.getRequestDispatcher("usuario.jsp").forward(request, response);
+        request.getRequestDispatcher("/usuario/usuario.jsp").forward(request, response);
 
     }
 }

@@ -30,7 +30,7 @@ public class EditarUserCommand implements Command {
 
             session.setAttribute("login", user);
 
-            response.sendRedirect("dados.jsp");
+            new UserDadosCommand().execute(request, response);
 
 
 

@@ -9,10 +9,13 @@
         <module name="projeto-pw-simulador" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="projeto-pw-simulador" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="projeto-pw-simulador" options="-endorseddirs &quot;$PROJECT_DIR$/target/endorsed&quot;" />
+      <module name="projeto-pw-simulador" options="-endorseddirs C:\Users\elmat\Desktop\pw1\target/endorsed" />
     </option>
   </component>
 </project>

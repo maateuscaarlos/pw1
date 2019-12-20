@@ -13,4 +13,6 @@ public interface CarteiraDAO {
     public Optional<Carteira> buscarCarteira(Long id) throws Exception;
 
     public void reinicarSaldo(Long id)throws Exception;
+
+    public void atualizarSaldo(Carteira carteira)throws Exception;
 }

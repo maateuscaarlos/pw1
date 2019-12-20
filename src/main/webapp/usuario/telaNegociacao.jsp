@@ -22,6 +22,33 @@
             <div class="card-panel green lighten-5 row" style="padding: 5%; margin-top: 8%;">
                 <div class="container">
                     <div class="card">
+                        <table class="responsive-table highlight container">
+                            <tr>
+                                <th>Nome</th>
+                                <th>open</th>
+                                <th>high</th>
+                                <th>low</th>
+                                <th>price</th>
+                                <th>Ação</th>
+                            </tr>
+                            <c:forEach items="${ativos}" var="ativo">
+                                <tr>
+                                    <td>${ativo.nameAtivo}</td>
+                                    <td>${ativo.open}</td>
+                                    <td>${ativo.high}</td>
+                                    <td>${ativo.low}</td>
+                                    <td>${ativo.price}</td>
+                                    <td>
+                                        <form method="post" action="Controller?command=RealizarComprarCommand">
+                                            <!--<label>Quantidade maxima: ${(sessionScope.login.carteira.valorCaixa)/(ativo.price)}</label> -->
+                                            <input id="idAtivo" name="idAtivo" value="${ativo.symbol}">
+                                            <input id="quantidade" name="quantidade" type="number" placeholder="${(sessionScope.login.carteira.valorCaixa)/(ativo.price)}">
+                                            <button>Adicionar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
                     </div>
                 </div>
             </div>

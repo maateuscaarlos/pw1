@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AtivoDAO {
 
-    public void CadastrarAtivo(Ativo ativo, Long idCarteira) throws Exception;
+    public Ativo CadastrarAtivo(Ativo ativo, Long idCarteira) throws Exception;
 
     public void removerAtivo(Long id) throws Exception;
 

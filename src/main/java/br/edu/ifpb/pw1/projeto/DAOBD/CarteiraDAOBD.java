@@ -78,6 +78,21 @@ public class CarteiraDAOBD implements CarteiraDAO {
         this.conexao.desconectar();
         }
 
+    @Override
+    public void atualizarSaldo(Carteira carteira) throws Exception {
+        this.conexao.conectar();
+        String sql = "UPDATE Carteira SET valorCaixa = ? WHERE id = ?";
+        PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+
+        statement.setBigDecimal(1, carteira.getValorCaixa());
+        statement.setLong(2, carteira.getId());
+
+        statement.executeUpdate();
+
+        this.conexao.desconectar();
+
+    }
+
 
     private Carteira obterUltimaCarteira() throws Exception {
         String sql = "SELECT * FROM Carteira ORDER BY id DESC LIMIT 1";

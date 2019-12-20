@@ -6,6 +6,7 @@ import br.edu.ifpb.pw1.projeto.model.Ativo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class AtivoDAOBD implements AtivoDAO {
     }
 
     @Override
-    public void CadastrarAtivo(Ativo ativo, Long idCarteira) throws Exception {
+    public Ativo CadastrarAtivo(Ativo ativo, Long idCarteira) throws Exception {
         this.conexao.conectar();
         String sql = "INSERT INTO ATIVO (nome, precoDeCompra, quantidade, idCarteira)" + "VALUES (?, ?,?,?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
@@ -36,6 +37,7 @@ public class AtivoDAOBD implements AtivoDAO {
         statement.executeUpdate();
 
         this.conexao.desconectar();
+        return obterUltimoAtivo();
 
     }
 
@@ -90,6 +92,28 @@ public class AtivoDAOBD implements AtivoDAO {
         this.conexao.desconectar();
 
         return ativos;
+    }
+    private Ativo obterUltimoAtivo() throws Exception {
+        String sql = "SELECT * FROM Ativo ORDER BY id DESC LIMIT 1";
+        ResultSet rs = null;
+        Statement statement = null;
+        this.conexao.conectar();
+
+
+        statement = this.conexao.getConexao().createStatement();
+        rs = statement.executeQuery(sql);
+        Ativo ativo = null;
+        while (rs.next()) {
+            ativo = new Ativo();
+            ativo.setId(rs.getLong("id"));
+            ativo.setQuantidade(rs.getBigDecimal("quantidade"));
+            ativo.setPrecoDeCompra(rs.getBigDecimal("precoDeCompra"));
+            ativo.setNome(rs.getString("nome"));
+        }
+
+
+        conexao.desconectar();
+        return ativo;
     }
 
 }

@@ -22,14 +22,13 @@ public class TransacaoDAOBD implements TransacaoDAO {
     @Override
     public void cadastrarTransacao(Transacao transacao) throws Exception {
         this.conexao.conectar();
-        String sql = "INSERT INTO TRANSACAO (id, idAtivo, idUser, dia, valor)" + "VALUES (?, ?, ?,?,?)";
+        String sql = "INSERT INTO TRANSACAO (idAtivo, idUser, dia, valor)" + "VALUES (?, ?,?,?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
 
-        statement.setLong(1, transacao.getId());
-        statement.setLong(2, transacao.getAtivo().getId());
-        statement.setLong(3, transacao.getUser().getId());
-        statement.setDate(4, (java.sql.Date) Date.from(transacao.getData().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        statement.setBigDecimal(5,transacao.getValor());
+        statement.setLong(1, transacao.getAtivo().getId());
+        statement.setLong(2, transacao.getUser().getId());
+        statement.setDate(3, java.sql.Date.valueOf(transacao.getData()));
+        statement.setBigDecimal(4,transacao.getValor());
 
 
         statement.executeUpdate();

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--<%@ taglib prefix="f" uri="" %>--%>
 <%--
   Created by IntelliJ IDEA.
@@ -49,7 +51,9 @@
                 <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
             </tr>
             <tr>
-                <td name="carteira">${sessionScope.login.carteira.valorCaixa}</td>
+                <td name="carteira">
+                    <fmt:setLocale value="pt-BR"/>
+                    <fmt:formatNumber type="currency">${sessionScope.login.carteira.valorCaixa}</fmt:formatNumber></td>
             </tr>
         </table>
     </div>

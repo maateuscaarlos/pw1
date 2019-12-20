@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset=UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>Login</title>
+  <title>Rende Fácil</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,65 +13,67 @@
 </head>
 
 <body>
-  <nav class="green darken-3">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">Rende Fácil</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="CadastroUsuario.html">Cadastro</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container" style="margin-top: 1%;">
-    <div class="container">
-      <div class="card-panel green lighten-5">
-        <div class="center">
-          <i class=" large material-icons">account_circle</i><br>
-          <span style="font-size: 150%; font-family: Arial, Helvetica, sans-serif;">Login</span>
-        </div>
-        <div class="container">
-          <form class="col s12" action="Controller?command=LoginCommand" method="post">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="validate">
-                <label for="email">Email</label>
-              </div>
+<nav class="green darken-3">
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">Rende Fácil</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="CadastroUsuario.html">Cadastro</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container" style="margin-top: 1%;">
+  <div class="container">
+    <div class="card-panel green lighten-5">
+      <div class="center">
+        <i class=" large material-icons">account_circle</i><br>
+        <span style="font-size: 150%; font-family: Arial, Helvetica, sans-serif;">Login</span>
+      </div>
+      <div class="container">
+        <form class="col s12" action="Controller?command=LoginCommand" method="post">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input id="email" name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="validate">
+              <label for="email">Email</label>
             </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">lock</i>
-                <input id="password" name="senha" type="password" class="validate" pattern=".{6,}" title="Seis ou mais caracteres">
-                <label for="password">Senha</label>
-              </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
+              <input id="password" name="senha" type="password" class="validate" pattern=".{6,}" title="Seis ou mais caracteres">
+              <label for="password">Senha</label>
             </div>
-            <div style="margin-bottom: 20%;">
+          </div>
+          <div style="margin-bottom: 20%;">
               <span style="float: right; text-align: right;">
                 Ainda não possui conta?<br>
                 <a class="green-text" href="CadastroUsuario.html">Clique aqui</a>
                 e cadastre-se gratuitamente!
               </span>
-            </div>
+          </div>
 
-            <div style="float:right">
-              <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Login
-                <i class="material-icons right">send</i>
-              </button>
-              <a class="btn waves-effect waves-light green darken-3" type="submit" name="action">Voltar
-                <i class="material-icons right">reply</i>
-              </a>
-            </div>
-          </form>
-          <br><br>
-        </div>
+          <div style="float:right">
+            <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Login
+              <i class="material-icons right">send</i>
+            </button>
+            <a class="btn waves-effect waves-light green darken-3" type="submit" name="action">Voltar
+              <i class="material-icons right">reply</i>
+            </a>
+          </div>
+        </form>
+        <br><br>
       </div>
     </div>
   </div>
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="./materialize/js/materialize.js"></script>
-  <script src="./materialize/js/init.js"></script>
+</div>
+
+<!--  Scripts-->
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="graficoAtivo.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="./materialize/js/materialize.js"></script>
+<script src="./materialize/js/init.js"></script>
 
 </body>
-</body>
 
-</htm >
+</html>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -59,25 +60,25 @@
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix">person</i>
-                                        <input id="nome" name="nome" type="text" class="validate" pattern="[a-zA-Z]+" title="Apenas letras">
+                                        <input value="${sessionScope.login.nome}" id="nome" name="nome" type="text" class="validate" pattern="[a-z A-Z]+" title="Apenas letras">
                                         <label for="nome">Nome</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix">email</i>
-                                        <input id="email" name="email" type="email" class="validate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                        <input value="${sessionScope.login.email}" id="email" name="email" type="email" class="validate" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                                         <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix">lock</i>
-                                        <input id="senha" name="senha" type="password" class="validate" pattern=".{6,}" title="Seis ou mais caracteres">
+                                        <input value="${sessionScope.login.senha}" id="senha" name="senha" type="password" class="validate" pattern=".{6,}" title="Seis ou mais caracteres">
                                         <label for="senha">Senha</label>
                                     </div>
 
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix">lock</i>
-                                        <input id="confirmarsenha" name="confirmarsenha" type="password" class="validate" pattern=".{6,}" title="Seis ou mais caracteres">
+                                        <input value="${sessionScope.login.senha}" id="confirmarsenha" name="confirmarsenha" type="password" class="validate" pattern=".{6,}" title="Seis ou mais caracteres">
                                         <label for="confirmarsenha">Confirmar Senha</label>
                                     </div>
                                 </div>
@@ -95,6 +96,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

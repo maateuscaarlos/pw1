@@ -5,7 +5,6 @@ import br.edu.ifpb.pw1.projeto.model.NomeAtivo;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
 

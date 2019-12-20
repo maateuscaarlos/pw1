@@ -10,21 +10,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-@WebServlet(name = "reiniciarSaldo", urlPatterns = {"/reiniciarSaldo"})
-public class ReiniciarSaldoCommand  {
+
+public class ReiniciarSaldoCommand implements Command {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         User user = new User();
         user = (User) session.getAttribute("login");
 
+        Carteira carteira2 = new Carteira();
+        carteira2 = (Carteira) session.getAttribute("carteira");
+
         CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
-        carteiraDAO.reinicarSaldo(user.getCarteira().getId());
+        carteiraDAO.reinicarSaldo(carteira2.getId());
         Carteira carteira = carteiraDAO.buscarCarteira(user.getCarteira().getId()).orElseThrow(() -> new ServletException());
         user.setCarteira(carteira);
         session.setAttribute("login", user);
+        session.setAttribute("carteira", carteira);
 
 
-        response.sendRedirect("usuario.html");
+
+        request.getRequestDispatcher("usuario/dados.jsp").forward(request, response);
     }
 }

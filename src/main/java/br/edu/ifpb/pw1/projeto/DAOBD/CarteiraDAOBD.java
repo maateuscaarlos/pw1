@@ -68,15 +68,16 @@ public class CarteiraDAOBD implements CarteiraDAO {
     @Override
     public void reinicarSaldo(Long id) throws Exception {
         this.conexao.conectar();
-        String sql = "UPDATE CARTEIRA SET valorCaixa = 10000.00 WHERE id = ?" + "VALUES (?)";
+        BigDecimal valor = new BigDecimal(10000.00);
+        String sql = "UPDATE Carteira SET valorCaixa = ? WHERE id = ?";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
-
-        statement.setLong(1, id);
+        statement.setBigDecimal(1, valor);
+        statement.setLong(2, id);
 
         statement.executeUpdate();
 
         this.conexao.desconectar();
-        }
+    }
 
     @Override
     public void atualizarSaldo(Carteira carteira) throws Exception {
@@ -111,7 +112,7 @@ public class CarteiraDAOBD implements CarteiraDAO {
         }
 
 
-            conexao.desconectar();
-            return carteira;
+        conexao.desconectar();
+        return carteira;
     }
 }

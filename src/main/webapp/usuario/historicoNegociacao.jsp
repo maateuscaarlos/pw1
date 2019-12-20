@@ -23,37 +23,42 @@
 
 <div class="container">
     <h2 class="center">Histórico de Transações</h2>
+    <c:forEach items="${transacaos}" var="transacao">
     <div class="card-panel green lighten-5" style="max-height: 800px">
         <!--Aqui add um forEach pra pegar o histórico completo do usuario-->
+
         <table class="responsive-table highlight container">
             <thead>
             <tr>
                 <th>Nome</th>
-                <td>${sessionScope.login.nome}</td>
+                <td>${transacao.ativo.nome}</td>
             </tr>
             <tr>
                 <th>Numero da Compra</th>
-                <td>
-                    <!--Aqui troca esse valor pelo id da compra-->
-                    1111222
-                </td>
+                <td>${transacao.id}</td>
             </tr>
             <tr>
                 <th>Data</th>
-                <td>
-                    <!--troca esse valor estático por uma expression language-->
-                    20/12/2019
-                </td>
+                <td>${transacao.data}</td>
             </tr>
             <tr>
                 <th>Valor</th>
                 <td><fmt:setLocale value="pt-BR"/>
-                    <!-- Substitui ai o valor na expression language-->
-                    <fmt:formatNumber type="currency">${sessionScope.login.carteira.valorCaixa}</fmt:formatNumber></td></td>
+                    <fmt:formatNumber type="currency">${transacao.valor}</fmt:formatNumber></td></td>
+            </tr>
+            <tr>
+                <th>Quantidade</th>
+                <td>${transacao.ativo.quantidade}</td>
+            </tr>
+            <tr>
+                <th>Preço de Compra</th>
+                <td>${transacao.ativo.precoDeCompra}</td>
             </tr>
             </thead>
         </table>
+
     </div>
+    </c:forEach>
 </div>
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

@@ -2,11 +2,16 @@ package br.edu.ifpb.pw1.projeto.DAOBD;
 
 import br.edu.ifpb.pw1.projeto.DAO.Conexao;
 import br.edu.ifpb.pw1.projeto.DAO.TransacaoDAO;
+import br.edu.ifpb.pw1.projeto.model.Ativo;
 import br.edu.ifpb.pw1.projeto.model.Transacao;
+import br.edu.ifpb.pw1.projeto.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,7 +78,8 @@ public class TransacaoDAOBD implements TransacaoDAO {
 
     @Override
     public List<Transacao> buscarTodos(Long idUser) throws Exception {
-        String sql = "SELECT * FROM ATIVO WHERE idUser = ?";
+        this.conexao.conectar();
+        String sql = "SELECT * FROM TRANSACAO WHERE idUser = ?";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
         statement.setLong(1,idUser);
         ResultSet result = statement.executeQuery();
@@ -82,12 +88,21 @@ public class TransacaoDAOBD implements TransacaoDAO {
             Transacao transacao = new Transacao();
 
             transacao.setId(result.getLong("id"));
-            transacao.getAtivo().setId(result.getLong("idAtivo"));
-            transacao.getUser().setId(result.getLong("idUser"));
+            Ativo ativo = new Ativo();
+            ativo.setId(result.getLong("idAtivo"));
+            transacao.setAtivo(ativo);
+            User user = new User();
+
+            user.setId(result.getLong("idUser"));
+            transacao.setUser(user);
             transacao.setValor(result.getBigDecimal("valor"));
 
             Date dia = result.getDate("dia");
-            transacao.setData(dia.toInstant().atZone( ZoneId.systemDefault() ).toLocalDate());
+            String data = new SimpleDateFormat("dd/MM/yyyy").format(dia);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate date = LocalDate.parse(data,formatter);
+            transacao.setData(date);
+
             transacoes.add(transacao);
         }
         this.conexao.desconectar();

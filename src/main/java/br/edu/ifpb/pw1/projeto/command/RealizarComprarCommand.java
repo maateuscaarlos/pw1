@@ -49,6 +49,7 @@ public class RealizarComprarCommand implements Command {
 
         CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
         carteiraDAO.atualizarSaldo(carteira);
+        user.setCarteira(carteira);
 
         Transacao transacao = new Transacao();
         transacao.setValor(ativo.getPrecoDeCompra().multiply(ativo.getQuantidade()));
@@ -61,7 +62,7 @@ public class RealizarComprarCommand implements Command {
         transacaoDAO.cadastrarTransacao(transacao);
 
 
-
+        session.setAttribute("login", user);
         session.setAttribute("carteira", carteira);
 
         request.getRequestDispatcher("usuario/telaNegociacao.jsp").forward(request, response);

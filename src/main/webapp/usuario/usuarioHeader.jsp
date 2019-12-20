@@ -27,9 +27,11 @@
             <li>
                 <a href="#usuario" class="dropdown-trigger white-text">${sessionScope.login.nome} <i class="material-icons left">person</i></a>
             </li>
-            <li><form  action="Controller?command=UserNegociacaoCommand" method="post"><a><button type="action" name="action" class="btn-flat white-text">Ativos</button><i class="material-icons left">multiline_chart</i></a></form>
+            <li><a><form  action="Controller?command=UserNegociacaoCommand" method="post"><button type="action" name="action" class="btn-flat white-text">Ativos</button><i class="material-icons left">multiline_chart</i></form></a>
             </li>
-            <li><a href="#">Histórico <i class="material-icons left">reorder</i></a></li>
+            <li>
+                <a><form  action="Controller?command=HistoricoNegociacoesCommand" method="post"><button type="action" name="action" class="btn-flat white-text">Histórico</button><i class="material-icons left">reorder</i></form></a>
+            </li>
         </ul>
         <form  action="Controller?command=UserCommand" method="post"><button type="action" name="action" class="btn-flat white-text" style="font-size: 200%">Rende Fácil</button></form>
     </div>

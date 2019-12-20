@@ -51,12 +51,12 @@
                 </table>
                 <div style="margin: 5%">
                     <a class="btn-flat modal-trigger" href="#editar"><i class="material-icons">edit</i>Editar Dados</a>
-                    <form action="Controller?command=ReiniciarSaldoCommand" method="post">
+                    <a style="float: right"><form action="Controller?command=ReiniciarSaldoCommand" method="post">
                         <button class="btn-flat" type="action" name="action">
                             <i class="material-icons" href="">refresh</i>
                             Resetar Carteira
                         </button>
-                    </form>
+                    </form></a>
                 </div>
             </div>
             <div>

@@ -18,10 +18,10 @@
 <body>
 <c:import url="/usuario/usuarioHeader.jsp"/>
 <div class="row" style="margin: 1%;">
-    <div class="col s12">
+    <div class="container">
         <h5 style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-style:inherit;"><b> COMECE A INVESTIR:</b></h5>
-        <div class="col s6">
-            <div class="card-panel green lighten-5 row" style="padding: 5%; margin-top: 8%;">
+        <div class="col s12">
+            <div class="card-panel green lighten-5 row" style="padding: 5%; margin-top: 2%;">
 
                 <div class="card" style="overflow-y: scroll; height: 350px; width: 100%; margin: 2%" >
                     <fmt:setLocale value="pt-BR"/>
@@ -54,9 +54,6 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="col s6">
-            <div id="chartContainer" style="height: 30%; width: 100%;"></div>
         </div>
     </div>
 </div>

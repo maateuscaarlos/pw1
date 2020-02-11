@@ -9,16 +9,18 @@ public class Ativo {
     public String nome;
     public BigDecimal precoDeCompra;
     public BigDecimal quantidade;
+    public Disponibilidade disponibilidade;
 
 
     public Ativo() {
     }
 
-    public Ativo(Long id, String nome, BigDecimal precoDeCompra, BigDecimal quantidade) {
+    public Ativo(Long id, String nome, BigDecimal precoDeCompra, BigDecimal quantidade, Disponibilidade disponibilidade) {
         this.id = id;
         this.nome = nome;
         this.precoDeCompra = precoDeCompra;
         this.quantidade = quantidade;
+        this.disponibilidade = disponibilidade;
     }
 
     public Long getId() {
@@ -53,30 +55,39 @@ public class Ativo {
         this.quantidade = quantidade;
     }
 
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof Ativo)) return false;
-        if (!super.equals(object)) return false;
-        Ativo ativo = (Ativo) object;
-        return java.util.Objects.equals(getId(), ativo.getId()) &&
-                java.util.Objects.equals(getNome(), ativo.getNome()) &&
-                java.util.Objects.equals(getPrecoDeCompra(), ativo.getPrecoDeCompra()) &&
-                java.util.Objects.equals(getQuantidade(), ativo.getQuantidade());
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ativo ativo = (Ativo) o;
+        return Objects.equals(id, ativo.id) &&
+                Objects.equals(nome, ativo.nome) &&
+                Objects.equals(precoDeCompra, ativo.precoDeCompra) &&
+                Objects.equals(quantidade, ativo.quantidade) &&
+                disponibilidade == ativo.disponibilidade;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getId(), getNome(), getPrecoDeCompra(), getQuantidade());
+        return Objects.hash(id, nome, precoDeCompra, quantidade, disponibilidade);
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Ativo{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", precoDeCompra=" + precoDeCompra +
                 ", quantidade=" + quantidade +
+                ", disponibilidade=" + disponibilidade +
                 '}';
     }
 }

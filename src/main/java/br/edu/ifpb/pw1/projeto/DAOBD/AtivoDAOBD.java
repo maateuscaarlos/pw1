@@ -3,6 +3,7 @@ package br.edu.ifpb.pw1.projeto.DAOBD;
 import br.edu.ifpb.pw1.projeto.DAO.AtivoDAO;
 import br.edu.ifpb.pw1.projeto.DAO.Conexao;
 import br.edu.ifpb.pw1.projeto.model.Ativo;
+import br.edu.ifpb.pw1.projeto.model.Disponibilidade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,14 +23,14 @@ public class AtivoDAOBD implements AtivoDAO {
     @Override
     public Ativo CadastrarAtivo(Ativo ativo, Long idCarteira) throws Exception {
         this.conexao.conectar();
-        String sql = "INSERT INTO ATIVO (nome, precoDeCompra, quantidade, idCarteira)" + "VALUES (?, ?,?,?)";
+        String sql = "INSERT INTO ATIVO (nome, precoDeCompra, quantidade, idCarteira, disponibilidade)" + "VALUES (?, ?,?,?,?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
-
 
         statement.setString(1, ativo.getNome());
         statement.setBigDecimal(2, ativo.getPrecoDeCompra());
         statement.setBigDecimal(3, ativo.getQuantidade());
         statement.setLong(4,idCarteira);
+        statement.setString(5,ativo.getDisponibilidade().name());
 
 
         statement.executeUpdate();
@@ -64,6 +65,9 @@ public class AtivoDAOBD implements AtivoDAO {
             ativo.setNome(result.getString("nome"));
             ativo.setPrecoDeCompra(result.getBigDecimal("precoDeCompra"));
             ativo.setQuantidade(result.getBigDecimal("quantidade"));
+            if(result.getString("disponibilidade") == "DISPONIVEL")
+                ativo.setDisponibilidade(Disponibilidade.DISPONIVEL);
+            else ativo.setDisponibilidade(Disponibilidade.INDISPONIVEL);
 
         }
         this.conexao.desconectar();
@@ -72,11 +76,25 @@ public class AtivoDAOBD implements AtivoDAO {
     }
 
     @Override
-    public List<Ativo> buscarTodos(Long idCarteira) throws Exception {
+    public void updtadeDisponibilidade(Ativo ativo) throws Exception {
         this.conexao.conectar();
-        String sql = "SELECT * FROM ATIVO WHERE idCarteira = ?";
+        String sql = "UPDATE ATIVO SET disponibilidade = ?  WHERE id = ?";
+        PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
+        statement.setString(1, ativo.getDisponibilidade().name());
+        statement.setLong(2, ativo.getId());
+
+        statement.executeUpdate();
+
+        this.conexao.desconectar();
+    }
+
+    @Override
+    public List<Ativo> buscarTodos(Long idCarteira, Disponibilidade disponibilidade) throws Exception {
+        this.conexao.conectar();
+        String sql = "SELECT * FROM ATIVO WHERE idCarteira = ? and disponibilidade = ?";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
         statement.setLong(1,idCarteira);
+        statement.setString(2, disponibilidade.name());
         ResultSet result = statement.executeQuery();
         List<Ativo> ativos = new ArrayList<>();
         while (result.next()) {
@@ -85,6 +103,9 @@ public class AtivoDAOBD implements AtivoDAO {
             ativo.setNome(result.getString("nome"));
             ativo.setPrecoDeCompra(result.getBigDecimal("precoDeCompra"));
             ativo.setQuantidade(result.getBigDecimal("quantidade"));
+            if(result.getString("disponibilidade") == "DISPONIVEL")
+                ativo.setDisponibilidade(Disponibilidade.DISPONIVEL);
+            else ativo.setDisponibilidade(Disponibilidade.INDISPONIVEL);
             ativos.add(ativo);
         }
         this.conexao.desconectar();
@@ -97,7 +118,6 @@ public class AtivoDAOBD implements AtivoDAO {
         Statement statement = null;
         this.conexao.conectar();
 
-
         statement = this.conexao.getConexao().createStatement();
         rs = statement.executeQuery(sql);
         Ativo ativo = null;
@@ -107,9 +127,10 @@ public class AtivoDAOBD implements AtivoDAO {
             ativo.setQuantidade(rs.getBigDecimal("quantidade"));
             ativo.setPrecoDeCompra(rs.getBigDecimal("precoDeCompra"));
             ativo.setNome(rs.getString("nome"));
+            if(rs.getString("disponibilidade") == "DISPONIVEL")
+                ativo.setDisponibilidade(Disponibilidade.DISPONIVEL);
+            else ativo.setDisponibilidade(Disponibilidade.INDISPONIVEL);
         }
-
-
         conexao.desconectar();
         return ativo;
     }

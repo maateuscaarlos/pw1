@@ -35,6 +35,7 @@ public class RealizarComprarCommand implements Command {
         ativo.setPrecoDeCompra(ativoJson.getPrice());
         ativo.setNome(ativoJson.getNameAtivo());
         ativo.setQuantidade(quantidade);
+        ativo.setDisponibilidade(Disponibilidade.DISPONIVEL);
 
 
 

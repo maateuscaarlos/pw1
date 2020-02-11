@@ -1,10 +1,7 @@
 package br.edu.ifpb.pw1.projeto.viewJSF;
 
 import br.edu.ifpb.pw1.projeto.DAO.*;
-import br.edu.ifpb.pw1.projeto.model.Ativo;
-import br.edu.ifpb.pw1.projeto.model.AtivoJson;
-import br.edu.ifpb.pw1.projeto.model.Transacao;
-import br.edu.ifpb.pw1.projeto.model.User;
+import br.edu.ifpb.pw1.projeto.model.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -39,7 +36,7 @@ public class VenderAtivos implements Serializable {
         setUser((User)session.getAttribute("login"));
 
         AtivoDAO ativoDAO = DaoFactory.criarAtivoDAO();
-        this.ativos = ativoDAO.buscarTodos(user.getCarteira().getId());
+        this.ativos = ativoDAO.buscarTodos(user.getCarteira().getId(), Disponibilidade.DISPONIVEL);
 
         ConexaoJsonApi conexaoJsonApi = new ConexaoJsonApi();
         this.ativoJsons = conexaoJsonApi.buscarAtivos();
@@ -85,22 +82,30 @@ public class VenderAtivos implements Serializable {
 
         CarteiraDAO carteiraDAO = DaoFactory.criarCarteiraDAO();
 
-        this.user.getCarteira().setValorCaixa(this.user.getCarteira().getValorCaixa().add(ativo.getPrecoDeCompra().multiply(ativo.getQuantidade())));
+        BigDecimal valorDeVenda = compararAtivo(ativo.getNome()).getPrice().multiply(ativo.getQuantidade());
+        this.user.getCarteira().setValorCaixa(this.user.getCarteira().getValorCaixa().add(valorDeVenda));
         carteiraDAO.atualizarSaldo(this.user.getCarteira());
 
         TransacaoDAO transacaoDAO = DaoFactory.criarTransacaoDAO();
 
         Transacao transacao = new Transacao();
-        transacao.setValor(ativo.getPrecoDeCompra().multiply(ativo.getQuantidade()));
+        transacao.setValor(valorDeVenda);
         transacao.setAtivo(ativo);
         transacao.setUser(this.user);
         LocalDate localDate = LocalDate.now();
         transacao.setData(localDate);
 
         transacaoDAO.cadastrarTransacao(transacao);
-        ativoDAO.removerAtivo(ativo.getId());
+        ativoDAO.updtadeDisponibilidade(ativo);
 
         ativos.remove(ativo);
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        setUser((User)session.getAttribute("login"));
+
+        session.setAttribute("login", this.user);
+        session.setAttribute("carteira", this.user.getCarteira());
 
     }
     public AtivoJson compararAtivo(String nome) throws Exception {

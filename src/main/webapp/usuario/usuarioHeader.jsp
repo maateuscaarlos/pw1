@@ -29,7 +29,7 @@
             </li>
             <li><form  action="Controller?command=UserNegociacaoCommand" method="post"><a><button type="action" name="action" class="btn-flat white-text">Ativos</button><i class="material-icons left">multiline_chart</i></a></form>
             </li>
-            <li><a href="#">Histórico <i class="material-icons left">reorder</i></a></li>
+            <li><a href="Controller?command=HistoricoNegociacoesCommand">Histórico <i class="material-icons left">reorder</i></a></li>
         </ul>
         <form  action="Controller?command=UserCommand" method="post"><button type="action" name="action" class="btn-flat white-text" style="font-size: 200%">Rende Fácil</button></form>
     </div>

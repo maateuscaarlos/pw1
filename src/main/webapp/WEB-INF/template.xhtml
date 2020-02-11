@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+    <meta charset="UTF-8" />
+    <title>Olá mundo!</title>
+</head>
+<f:view />
+<body>
+
+<div id="topo">
+    <ui:insert name="topo">
+        <h1>Meu sistema em JSF</h1>
+    </ui:insert>
+</div>
+
+<div id="menu-lateral">
+    <ui:insert name="menu">
+        <ul>
+            <li><a href="#">Item 1</a></li>
+            <li><a href="#">Item 2</a></li>
+            <li><a href="#">Item 3</a></li>
+            <li><a href="#">Item 4</a></li>
+            <li><a href="#">Item 5</a></li>
+        </ul>
+    </ui:insert>
+</div>
+
+<div id="principal">
+
+    <ui:insert name="principal"></ui:insert>
+
+</div>
+
+<div id="rodape">
+    <ui:insert name="rodape">
+        <p>Copyright IFPB - 2019</p>
+    </ui:insert>
+</div>
+
+</body>
+</html>

@@ -29,7 +29,7 @@ public class HistoricoNegociacoesCommand implements Command {
 
         for (int i=0;i<transacaos.size();i++){
             ativo = new Ativo();
-            ativo = ativoDAO.buscarAtivo(transacaos.get(i).getAtivo().getId()).orElseThrow(() -> new ServletException());
+            ativo = ativoDAO.buscarAtivo(transacaos.get(i).getAtivo().getId()).orElseThrow(() -> new NullPointerException());
             transacaos.get(i).setUser(user);
             transacaos.get(i).setAtivo(ativo);
         }

@@ -1,5 +1,7 @@
 package br.edu.ifpb.pw1.projeto.Filters;
 
+import br.edu.ifpb.pw1.projeto.model.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,8 @@ public class AutenticacaoFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpSession session = httpRequest.getSession();
-        String login = (String) session.getAttribute("login");
+        User login = (User) session.getAttribute("login");
+
         if (login == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
             httpResponse.sendRedirect("../index.html");

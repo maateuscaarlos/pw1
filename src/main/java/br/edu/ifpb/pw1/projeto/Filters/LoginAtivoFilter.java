@@ -22,11 +22,10 @@ public class LoginAtivoFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest)servletRequest;
         HttpSession session = httpRequest.getSession();
-        //User usuarioLogado = (User) session.getAttribute("login");
-        String usuarioLogado =(String) session.getAttribute("login");
+        User usuarioLogado = (User) session.getAttribute("login");
         if (usuarioLogado != null) {
             HttpServletResponse httpResponse = (HttpServletResponse)servletResponse;
-            httpResponse.sendRedirect("/usuario/usuario.jsp");
+            httpRequest.getRequestDispatcher("./usuario/usuario.jsp").forward(httpRequest,httpResponse);
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

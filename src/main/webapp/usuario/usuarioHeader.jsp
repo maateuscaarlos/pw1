@@ -41,7 +41,10 @@
         <form  action="Controller?command=UserDadosCommand" method="post"><button type="action" name="action" class="btn-flat black-text">Dados <i class="material-icons left">storage</i></button></form>
     </li>
     <li><a class="black-text modal-trigger" href="#carteira">Carteira <i class="material-icons left">account_balance_wallet</i></a></li>
-    <li><a class="black-text" href="#!">Logout <i class="material-icons left">exit_to_app</i></a></li>
+
+    <li>
+        <form action="Controller?command=LogoutCommand" method="post"><button type="action" name="action" class="black-text">Logout <i class="material-icons left">exit_to_app</i></button> </form>
+    </li>
 </ul>
 <div style="width: 35%; height: 60%" id="carteira" class="modal green lighten-5">
     <div class="modal-content">

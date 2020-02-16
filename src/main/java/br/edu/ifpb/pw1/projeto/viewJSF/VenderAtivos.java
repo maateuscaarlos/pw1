@@ -86,7 +86,7 @@ public class VenderAtivos implements Serializable {
         this.user.getCarteira().setValorCaixa(this.user.getCarteira().getValorCaixa().add(valorDeVenda));
         carteiraDAO.atualizarSaldo(this.user.getCarteira());
 
-        TransacaoDAO transacaoDAO = DaoFactory.criarTransacaoDAO();
+        //TransacaoDAO transacaoDAO = DaoFactory.criarTransacaoDAO();
 
         Transacao transacao = new Transacao();
         transacao.setValor(valorDeVenda);
@@ -95,7 +95,12 @@ public class VenderAtivos implements Serializable {
         LocalDate localDate = LocalDate.now();
         transacao.setData(localDate);
 
-        transacaoDAO.cadastrarTransacao(transacao);
+        //transacaoDAO.cadastrarTransacao(transacao);
+
+        //salvando venda no mongo
+        TransacaoDAOMongo transacaoDAOMongo = new TransacaoDAOMongo();
+        transacaoDAOMongo.cadastrarTransacao(transacao);
+
         ativoDAO.updtadeDisponibilidade(ativo);
 
         ativos.remove(ativo);

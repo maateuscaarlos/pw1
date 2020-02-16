@@ -5,6 +5,8 @@ import br.edu.ifpb.pw1.projeto.DAO.DaoFactory;
 import br.edu.ifpb.pw1.projeto.DAO.UserDAO;
 import br.edu.ifpb.pw1.projeto.model.Carteira;
 import br.edu.ifpb.pw1.projeto.model.User;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.params.SetParams;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,10 @@ public class LoginCommand implements Command {
         HttpSession sessao = request.getSession();
         sessao.setAttribute("login", user);
         sessao.setAttribute("carteira", carteiaUser);
+
+        Jedis jedis =  new Jedis("127.0.0.1", 6379);
+        jedis.set(user.getEmail(),sessao.getId(), SetParams.setParams());
+
 
         request.getRequestDispatcher("/usuario/usuario.jsp").forward(request, response);
 

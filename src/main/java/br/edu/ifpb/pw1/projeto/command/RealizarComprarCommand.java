@@ -59,8 +59,12 @@ public class RealizarComprarCommand implements Command {
         LocalDate localDate = LocalDate.now();
         transacao.setData(localDate);
 
-        TransacaoDAO transacaoDAO = DaoFactory.criarTransacaoDAO();
-        transacaoDAO.cadastrarTransacao(transacao);
+//        TransacaoDAO transacaoDAO = DaoFactory.criarTransacaoDAO();
+//        transacaoDAO.cadastrarTransacao(transacao);
+
+        //salvando no mongo
+        TransacaoDAOMongo transacaoDAOMongo = new TransacaoDAOMongo();
+        transacaoDAOMongo.cadastrarTransacao(transacao);
 
 
         session.setAttribute("login", user);

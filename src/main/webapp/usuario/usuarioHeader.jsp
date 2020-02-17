@@ -27,7 +27,8 @@
             <li>
                 <a href="#usuario" class="dropdown-trigger white-text">${sessionScope.login.nome} <i class="material-icons left">person</i></a>
             </li>
-            <li><a><form  action="Controller?command=UserNegociacaoCommand" method="post"><button type="action" name="action" class="btn-flat white-text">Ativos</button><i class="material-icons left">multiline_chart</i></form></a>
+            <li>
+                <a href="#ativos" class="dropdown-trigger white-text">Negociação<i class="material-icons left">multiline_chart</i></a>
             </li>
             <li>
                 <a><form  action="Controller?command=HistoricoNegociacoesCommand" method="post"><button type="action" name="action" class="btn-flat white-text">Histórico</button><i class="material-icons left">reorder</i></form></a>
@@ -38,12 +39,20 @@
 </nav>
 <ul id='usuario' class="dropdown-content green lighten-5">
     <li>
-        <form  action="Controller?command=UserDadosCommand" method="post"><button type="action" name="action" class="btn-flat black-text">Dados <i class="material-icons left">storage</i></button></form>
+        <form  action="Controller?command=UserDadosCommand" method="post"><button type="action" name="action" style="margin-top: 13px"  class="btn-flat black-text">Dados</button><i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%"  class="material-icons left">storage</i></form>
     </li>
     <li><a class="black-text modal-trigger" href="#carteira">Carteira <i class="material-icons left">account_balance_wallet</i></a></li>
 
     <li>
-        <form action="Controller?command=LogoutCommand" method="post"><button type="action" name="action" class="black-text">Logout <i class="material-icons left">exit_to_app</i></button> </form>
+        <form action="Controller?command=LogoutCommand" method="post"><button type="action" name="action" style="margin-top: 13px" class="black-text btn-flat">Logout </button> <i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%" class="material-icons left">exit_to_app</i></form>
+    </li>
+</ul>
+<ul id='ativos' class="dropdown-content green lighten-5">
+    <li>
+        <form  action="Controller?command=UserNegociacaoCommand" method="post"><button type="action" name="action" style="margin-top: 13px"  class="btn-flat black-text">Compras</button><i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%"  class="material-icons left">shopping_basket</i></form>
+    </li>
+    <li>
+        <form  action="Controller?command=VenderCommand" method="post"><button type="action" name="action" style="margin-top: 13px"  class="btn-flat black-text">Vendas</button><i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%"  class="material-icons left">attach_money</i></form>
     </li>
 </ul>
 <div style="width: 35%; height: 60%" id="carteira" class="modal green lighten-5">

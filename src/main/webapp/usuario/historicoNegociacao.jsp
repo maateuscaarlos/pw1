@@ -21,7 +21,6 @@
     <h2 class="center">Histórico de Transações</h2>
     <c:forEach items="${transacaos}" var="transacao">
     <div class="card-panel green lighten-5" style="max-height: 800px">
-        <!--Aqui add um forEach pra pegar o histórico completo do usuario-->
 
         <table class="responsive-table highlight container">
             <fmt:setLocale value="pt-BR"/>
@@ -31,7 +30,7 @@
                 <td>${transacao.ativo.nome}</td>
             </tr>
             <tr>
-                <th>Numero da Compra</th>
+                <th>Numero da Transação</th>
                 <td>${transacao.id}</td>
             </tr>
             <tr>
@@ -47,7 +46,7 @@
                 <td>${transacao.ativo.quantidade}</td>
             </tr>
             <tr>
-                <th>Preço de Compra</th>
+                <th>Preço</th>
                 <td><fmt:formatNumber type="currency">${transacao.ativo.precoDeCompra}</fmt:formatNumber></td>
             </tr>
             </thead>

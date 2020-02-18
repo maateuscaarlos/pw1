@@ -67,9 +67,36 @@
   </div>
 </div>
 
+<button onclick="getLocation()">Try It</button>
+<input type="text" id="lat" style="width: 200px"/>
+<input type="text" id="lon" style="width: 200px"/>
+<script>
+  var longitude;
+  var latitude;
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+    showLatitude();
+    showLongitude();
+  }
+
+  function showPosition(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+  }
+  function showLatitude() {
+    document.getElementById("lat").value = latitude;
+  }
+  function showLongitude() {
+    document.getElementById("lon").value = longitude;
+  }
+
+</script>
 <!--  Scripts-->
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script src="graficoAtivo.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="./materialize/js/materialize.js"></script>
 <script src="./materialize/js/init.js"></script>

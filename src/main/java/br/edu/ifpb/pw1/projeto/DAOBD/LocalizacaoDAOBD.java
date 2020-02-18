@@ -2,6 +2,8 @@ package br.edu.ifpb.pw1.projeto.DAOBD;
 
 import br.edu.ifpb.pw1.projeto.DAO.Conexao;
 import br.edu.ifpb.pw1.projeto.model.User;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.io.WKTReader;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +16,14 @@ public class LocalizacaoDAOBD {
 
     public void salvarLocalizacao(String latitude, String logitude, User usuario) throws Exception {
         this.conexao.conectar();
-        String query = "INSERT INTO locallogin (idususario, geometria) values (?,?)";
-        String pontoUm = "ST_GeomFromText('POINT(" + latitude + " " + logitude + ")')";
+
+        WKTReader reader = new WKTReader();
+        Geometry g1 = reader.read("POINT("+latitude+" "+logitude+")");
+        String pontoUm = "ST_GeomFromText('"+g1.toString()+"')";
+        String ultima = g1.toString();
+        String query = "INSERT INTO locallogin (idususario, geometria) values ("+usuario.getId()+","+pontoUm+")";
         try {
             PreparedStatement statement = this.conexao.getConexao().prepareStatement(query);
-            statement.setLong(1, usuario.getId());
-            statement.setString(2, pontoUm);
             statement.executeUpdate();
         }catch (Exception e){
 

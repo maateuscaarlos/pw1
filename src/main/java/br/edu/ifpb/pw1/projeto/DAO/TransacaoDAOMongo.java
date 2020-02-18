@@ -45,6 +45,20 @@ public class TransacaoDAOMongo implements TransacaoDAO {
 
     @Override
     public List<Transacao> buscarTodos(Long idUser) throws Exception {
+//
+//        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings
+//                        .getDefaultCodecRegistry(),
+//                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+//
+//        MongoClientSettings settings = MongoClientSettings.builder()
+//                .codecRegistry(pojoCodecRegistry)
+//                .build();
+//        try (MongoClient mongoClient = MongoClients.create(settings)) {
+//
+//            MongoDatabase banco = mongoClient.getDatabase("SimuladorInvestimentos");
+//            MongoCollection<Transacao> transacoes = banco.getCollection("transacoes", Transacao.class);
+//
+//            transacoes.find(("age", 30)).forEach(printBlock);
         return null;
     }
 }

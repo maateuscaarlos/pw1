@@ -49,6 +49,10 @@
                 <th>Preço</th>
                 <td><fmt:formatNumber type="currency">${transacao.ativo.precoDeCompra}</fmt:formatNumber></td>
             </tr>
+            <tr>
+                <th>Ação</th>
+                <td><fmt:formatNumber type="currency">${transacao.acao}</fmt:formatNumber></td>
+            </tr>
             </thead>
         </table>
 

@@ -94,6 +94,7 @@ public class VenderAtivos implements Serializable {
         transacao.setUser(this.user);
         LocalDate localDate = LocalDate.now();
         transacao.setData(localDate);
+        transacao.setAcao(Acao.VENDA);
 
         transacaoDAO.cadastrarTransacao(transacao);
         ativoDAO.updtadeDisponibilidade(ativo);

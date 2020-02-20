@@ -2,9 +2,7 @@ package br.edu.ifpb.pw1.projeto.DAOBD;
 
 import br.edu.ifpb.pw1.projeto.DAO.Conexao;
 import br.edu.ifpb.pw1.projeto.DAO.TransacaoDAO;
-import br.edu.ifpb.pw1.projeto.model.Ativo;
-import br.edu.ifpb.pw1.projeto.model.Transacao;
-import br.edu.ifpb.pw1.projeto.model.User;
+import br.edu.ifpb.pw1.projeto.model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,13 +25,14 @@ public class TransacaoDAOBD implements TransacaoDAO {
     @Override
     public void cadastrarTransacao(Transacao transacao) throws Exception {
         this.conexao.conectar();
-        String sql = "INSERT INTO TRANSACAO (idAtivo, idUser, dia, valor)" + "VALUES (?, ?,?,?)";
+        String sql = "INSERT INTO TRANSACAO (idAtivo, idUser, dia, valor, acao)" + "VALUES (?, ?,?,?,?)";
         PreparedStatement statement = this.conexao.getConexao().prepareStatement(sql);
 
         statement.setLong(1, transacao.getAtivo().getId());
         statement.setLong(2, transacao.getUser().getId());
         statement.setDate(3, java.sql.Date.valueOf(transacao.getData()));
         statement.setBigDecimal(4,transacao.getValor());
+        statement.setString(5,transacao.getAcao().name());
 
 
         statement.executeUpdate();
@@ -69,6 +68,9 @@ public class TransacaoDAOBD implements TransacaoDAO {
             transacao.setValor(result.getBigDecimal("valor"));
             Date dia = result.getDate("dia");
             transacao.setData(dia.toInstant().atZone( ZoneId.systemDefault() ).toLocalDate());
+            if(result.getString("acao") == "VENDA")
+                transacao.setAcao(Acao.VENDA);
+            else transacao.setAcao(Acao.COMPRA);
 
         }
         this.conexao.desconectar();
@@ -96,6 +98,10 @@ public class TransacaoDAOBD implements TransacaoDAO {
             user.setId(result.getLong("idUser"));
             transacao.setUser(user);
             transacao.setValor(result.getBigDecimal("valor"));
+
+            if(result.getString("acao") == "VENDA")
+                transacao.setAcao(Acao.VENDA);
+            else transacao.setAcao(Acao.COMPRA);
 
             Date dia = result.getDate("dia");
             String data = new SimpleDateFormat("dd/MM/yyyy").format(dia);

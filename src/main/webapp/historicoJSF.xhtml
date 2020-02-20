@@ -46,6 +46,7 @@
             <th class="order-table-header">Valor</th>
             <th class="order-table-header">Quantidade</th>
             <th class="order-table-header">Preço</th>
+            <th class="order-table-header">Ação</th>
         </tr>
         <tbody>
         <ui:repeat var="o" value="#{Historico.transacoes}" >
@@ -57,6 +58,7 @@
                     <td class="order-table-even-row">#{o.valor}</td>
                     <td class="order-table-even-row">#{o.ativo.quantidade}</td>
                     <td class="order-table-even-row">#{o.ativo.precoDeCompra}</td>
+                    <td class="order-table-even-row">#{o.acao}</td>
                 </tr>
             </h:panelGroup>
         </ui:repeat>

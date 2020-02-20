@@ -68,9 +68,9 @@ public class TransacaoDAOBD implements TransacaoDAO {
             transacao.setValor(result.getBigDecimal("valor"));
             Date dia = result.getDate("dia");
             transacao.setData(dia.toInstant().atZone( ZoneId.systemDefault() ).toLocalDate());
-            if(result.getString("acao") == "VENDA")
-                transacao.setAcao(Acao.VENDA);
-            else transacao.setAcao(Acao.COMPRA);
+            if(result.getString("acao").equals(Acao.COMPRA.name()))
+                transacao.setAcao(Acao.COMPRA);
+            else transacao.setAcao(Acao.VENDA);
 
         }
         this.conexao.desconectar();
@@ -99,9 +99,9 @@ public class TransacaoDAOBD implements TransacaoDAO {
             transacao.setUser(user);
             transacao.setValor(result.getBigDecimal("valor"));
 
-            if(result.getString("acao") == "VENDA")
-                transacao.setAcao(Acao.VENDA);
-            else transacao.setAcao(Acao.COMPRA);
+            if(result.getString("acao").equals(Acao.COMPRA.name()))
+                transacao.setAcao(Acao.COMPRA);
+            else transacao.setAcao(Acao.VENDA);
 
             Date dia = result.getDate("dia");
             String data = new SimpleDateFormat("dd/MM/yyyy").format(dia);

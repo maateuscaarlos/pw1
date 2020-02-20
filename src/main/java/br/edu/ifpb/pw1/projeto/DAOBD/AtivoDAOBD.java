@@ -65,7 +65,7 @@ public class AtivoDAOBD implements AtivoDAO {
             ativo.setNome(result.getString("nome"));
             ativo.setPrecoDeCompra(result.getBigDecimal("precoDeCompra"));
             ativo.setQuantidade(result.getBigDecimal("quantidade"));
-            if(result.getString("disponibilidade") == "DISPONIVEL")
+            if(result.getString("disponibilidade").equals(Disponibilidade.DISPONIVEL.name()))
                 ativo.setDisponibilidade(Disponibilidade.DISPONIVEL);
             else ativo.setDisponibilidade(Disponibilidade.INDISPONIVEL);
 
@@ -103,7 +103,7 @@ public class AtivoDAOBD implements AtivoDAO {
             ativo.setNome(result.getString("nome"));
             ativo.setPrecoDeCompra(result.getBigDecimal("precoDeCompra"));
             ativo.setQuantidade(result.getBigDecimal("quantidade"));
-            if(result.getString("disponibilidade") == "DISPONIVEL")
+            if(result.getString("disponibilidade").equals(Disponibilidade.DISPONIVEL.name()))
                 ativo.setDisponibilidade(Disponibilidade.DISPONIVEL);
             else ativo.setDisponibilidade(Disponibilidade.INDISPONIVEL);
             ativos.add(ativo);

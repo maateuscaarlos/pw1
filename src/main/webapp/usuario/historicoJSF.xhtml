@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+<h:head>
+    <h:outputStylesheet>
+        .order-table{
+            border-collapse:collapse;
+        }
+
+        .order-table-header{
+            text-align:center;
+            background:none repeat scroll 0 0 #E5E5E5;
+            border-bottom:1px solid #BBBBBB;
+            padding:16px;
+        }
+
+        .order-table-odd-row{
+            text-align:center;
+            background:none repeat scroll 0 0 #FFFFFFF;
+            border-top:1px solid #BBBBBB;
+        }
+
+        .order-table-even-row{
+            text-align:center;
+            background:none repeat scroll 0 0 #F9F9F9;
+            border-top:1px solid #BBBBBB;
+        }
+    </h:outputStylesheet>
+
+</h:head>
+<h:body>
+<!--    <ui:include src="./usuario/usuarioHeader.jsp"/>-->
+
+    <h1>Vender Seus Ativos</h1>
+
+    <table class="order-table">
+        <tr>
+            <th class="order-table-header">Nome</th>
+            <th class="order-table-header">Numero da transação</th>
+            <th class="order-table-header">data</th>
+            <th class="order-table-header">Valor</th>
+            <th class="order-table-header">Quantidade</th>
+            <th class="order-table-header">Preço</th>
+        </tr>
+        <tbody>
+        <ui:repeat var="o" value="#{Historico.transacoes}" >
+            <h:panelGroup>
+                <tr>
+                    <td class="order-table-even-row">#{o.ativo.nome}</td>
+                    <td class="order-table-even-row">#{o.id}</td>
+                    <td class="order-table-even-row">#{o.data}</td>
+                    <td class="order-table-even-row">#{o.valor}</td>
+                    <td class="order-table-even-row">#{o.ativo.quantidade}</td>
+                    <td class="order-table-even-row">#{o.ativo.precoDeCompra}</td>
+                </tr>
+            </h:panelGroup>
+        </ui:repeat>
+        </tbody>
+    </table>
+</h:body>
+</html>

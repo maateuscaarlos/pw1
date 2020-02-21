@@ -31,7 +31,7 @@
                 <a href="#ativos" class="dropdown-trigger white-text">Negociação<i class="material-icons left">multiline_chart</i></a>
             </li>
             <li>
-                <a><form  action="Controller?command=HistoricoNegociacoesCommand" method="post"><button type="action" name="action" class="btn-flat white-text">Histórico</button><i class="material-icons left">reorder</i></form></a>
+                <a><form  action="Controller?command=HistoricoCommand" method="post"><button type="action" name="action" class="btn-flat white-text">Histórico</button><i class="material-icons left">reorder</i></form></a>
             </li>
         </ul>
         <form  action="Controller?command=UserCommand" method="post"><button type="action" name="action" class="btn-flat white-text" style="font-size: 200%">Rende Fácil</button></form>

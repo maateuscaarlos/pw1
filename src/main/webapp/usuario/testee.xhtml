@@ -48,8 +48,8 @@
         }
     </h:outputStylesheet>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link href="./materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="./materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="../materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="../materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </h:head>
 <h:body>
@@ -64,7 +64,7 @@
                     <a href="#ativos" class="dropdown-trigger white-text">Negociação<i class="material-icons left">multiline_chart</i></a>
                 </li>
                 <li>
-                    <form action="Controller?command=HistoricoNegociacoesCommand" method="post"><a><h:commandButton action="Controller?command=HistoricoNegociacoesCommand" name="action" styleClass="btn-flat white-text" value="Histórico"/><i class="material-icons left">reorder</i></a></form>
+                    <form action="Controller?command=HistoricoCommand" method="post"><a><h:commandButton action="Controller?command=HistoricoCommand" name="action" styleClass="btn-flat white-text" value="Histórico"/><i class="material-icons left">reorder</i></a></form>
                 </li>
             </ul>
             <form  action="Controller?command=UserCommand" method="post"><h:commandButton action="Controller?command=UserCommand" name="action" class="btn-flat white-text" style="font-size: 200%" value="Rende Fácil"/></form>
@@ -143,7 +143,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="./materialize/js/materialize.js"></script>
-    <script src="./materialize/js/init.js"></script>
+    <script src="../materialize/js/materialize.js"></script>
+    <script src="../materialize/js/init.js"></script>
 </h:body>
 </html>

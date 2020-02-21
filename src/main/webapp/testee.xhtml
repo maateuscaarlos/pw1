@@ -30,40 +30,120 @@
             background:none repeat scroll 0 0 #F9F9F9;
             border-top:1px solid #BBBBBB;
         }
+        .button{
+            border: none;
+            border-radius: 20px;
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            padding: 0 16px;
+            text-transform: uppercase;
+            vertical-align: middle;
+            -webkit-tap-highlight-color: transparent;
+            background-color: #26a69a;
+            color: #FFFFFF;
+        }
+        .button:hover{
+            background-color: #2bbbad;
+        }
     </h:outputStylesheet>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="./materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="./materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </h:head>
 <h:body>
-<!--    <ui:include src="./usuario/usuarioHeader.jsp"/>-->
 
-    <h1>Vender Seus Ativos</h1>
+    <nav class="green darken-3" style="height: 63px;">
+        <div class="nav-wrapper container">
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="#usuario" class="dropdown-trigger white-text">${sessionScope.login.nome} <i class="material-icons left">person</i></a>
+                </li>
+                <li>
+                    <a href="#ativos" class="dropdown-trigger white-text">Negociação<i class="material-icons left">multiline_chart</i></a>
+                </li>
+                <li>
+                    <form action="Controller?command=HistoricoNegociacoesCommand" method="post"><a><h:commandButton action="Controller?command=HistoricoNegociacoesCommand" name="action" styleClass="btn-flat white-text" value="Histórico"/><i class="material-icons left">reorder</i></a></form>
+                </li>
+            </ul>
+            <form  action="Controller?command=UserCommand" method="post"><h:commandButton action="Controller?command=UserCommand" name="action" class="btn-flat white-text" style="font-size: 200%" value="Rende Fácil"/></form>
+        </div>
+    </nav>
+    <ul id='usuario' class="dropdown-content green lighten-5">
+        <li>
+            <form  action="Controller?command=UserDadosCommand" method="post"><h:commandButton action="Controller?command=UserDadosCommand" name="action" style="margin-top: 13px"  class="btn-flat black-text" value="Dados"/><i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%"  class="material-icons left">storage</i></form>
+        </li>
+        <li><a class="black-text modal-trigger" href="#carteira">Carteira <i class="material-icons left">account_balance_wallet</i></a></li>
 
-    <table class="order-table">
-        <tr>
-            <th class="order-table-header">ID</th>
-            <th class="order-table-header">Ativo</th>
-            <th class="order-table-header">Quantidade</th>
-            <th class="order-table-header">Preço de Compra</th>
-            <th class="order-table-header">Preço Atual</th>
-            <th class="order-table-header">Balanço</th>
-        </tr>
-        <tbody>
-        <ui:repeat var="o" value="#{VenderAtivosUser.ativos}" >
-            <h:form>
-            <h:panelGroup>
+        <li>
+            <form action="Controller?command=LogoutCommand" method="post"><h:commandButton action="Controller?command=LogoutCommand" name="action" style="margin-top: 13px" class="black-text btn-flat" value="Logout"/> <i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%" class="material-icons left">exit_to_app</i></form>
+        </li>
+    </ul>
+    <ul id='ativos' class="dropdown-content green lighten-5">
+        <li>
+            <form  action="Controller?command=UserNegociacaoCommand" method="post"><h:commandButton action="Controller?command=UserNegociacaoCommand" name="action" style="margin-top: 13px"  class="btn-flat black-text" value="Compras"/><i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%"  class="material-icons left">shopping_basket</i></form>
+        </li>
+        <li>
+            <form  action="Controller?command=VenderCommand" method="post"><h:commandButton action="Controller?command=VenderCommand" name="action" style="margin-top: 13px"  class="btn-flat black-text" value="Vendas"/><i style="margin-left: 16px; padding-right: 0.01%; margin-right: 0.1%"  class="material-icons left">attach_money</i></form>
+        </li>
+    </ul>
+    <div style="width: 35%; height: 60%" id="carteira" class="modal green lighten-5">
+        <div class="modal-content">
+            <div class="green darken-3">
+                <label style="font-size: 32pt;" class="white-text">Carteira:</label>
+            </div>
+            <table>
                 <tr>
-                    <td class="order-table-even-row">#{o.id}</td>
-                    <td class="order-table-even-row">#{o.nome}</td>
-                    <td class="order-table-even-row">#{o.quantidade}</td>
-                    <td class="order-table-even-row">#{o.precoDeCompra}</td>
-                    <td class="order-table-even-row">#{VenderAtivosUser.compararAtivo(o.nome).price}</td>
-                    <td class="order-table-even-row">#{VenderAtivosUser.balanco(o.id)}</td>
-                    <td><h:commandButton action="#{VenderAtivosUser.vender(o)}" value="VENDER"></h:commandButton></td>
+                    <td><b class="text-darken-3 green-text"> Saldo Atual</b></td>
                 </tr>
-            </h:panelGroup>
-            </h:form>
-        </ui:repeat>
-        </tbody>
-    </table>
+                <tr>
+                    <td name="carteira">
+                        R$ ${sessionScope.login.carteira.valorCaixa},00</td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer green lighten-5">
+            <a href="#!" class="modal-close btn-flat text-darken-3 green-text">Fechar</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container">
+            <br/>
+            <h5 style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-style:inherit;"><b> Vender Seus Ativos:</b></h5>
+            <br/>
+            <table class="order-table">
+                <tr>
+                    <th class="order-table-header">ID</th>
+                    <th class="order-table-header">Ativo</th>
+                    <th class="order-table-header">Quantidade</th>
+                    <th class="order-table-header">Preço de Compra</th>
+                    <th class="order-table-header">Preço Atual</th>
+                    <th class="order-table-header">Balanço</th>
+                    <th class="order-table-header">Ação</th>
+                </tr>
+                <tbody>
+                <ui:repeat var="o" value="#{VenderAtivosUser.ativos}" >
+                    <h:form>
+                        <h:panelGroup>
+                            <tr>
+                                <td class="order-table-even-row">#{o.id}</td>
+                                <td class="order-table-even-row">#{o.nome}</td>
+                                <td class="order-table-even-row">#{o.quantidade}</td>
+                                <td class="order-table-even-row">#{o.precoDeCompra}</td>
+                                <td class="order-table-even-row">#{VenderAtivosUser.compararAtivo(o.nome).price}</td>
+                                <td class="order-table-even-row">#{VenderAtivosUser.balanco(o.id)}</td>
+                                <td><h:commandButton action="#{VenderAtivosUser.vender(o)}" styleClass="button" value="Vender"/></td>
+                            </tr>
+                        </h:panelGroup>
+                    </h:form>
+                </ui:repeat>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="./materialize/js/materialize.js"></script>
+    <script src="./materialize/js/init.js"></script>
 </h:body>
 </html>

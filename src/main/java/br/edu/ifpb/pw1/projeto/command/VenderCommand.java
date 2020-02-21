@@ -6,6 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 public class VenderCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        request.getRequestDispatcher("testee.xhtml").forward(request, response);
+        request.getRequestDispatcher("usuario/testee.xhtml").forward(request, response);
     }
 }

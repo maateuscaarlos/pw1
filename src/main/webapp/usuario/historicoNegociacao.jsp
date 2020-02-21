@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <th>Ação</th>
-                <td><fmt:formatNumber type="currency">${transacao.acao}</fmt:formatNumber></td>
+                <td>${transacao.acao}</td>
             </tr>
             </thead>
         </table>

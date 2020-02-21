@@ -60,11 +60,19 @@ public class TransacaoDAOBD implements TransacaoDAO {
         statement.setLong(1, id);
         ResultSet result = statement.executeQuery();
         Transacao transacao = null;
+        User user = null;
+        Ativo ativo = null;
         while (result.next()) {
             transacao = new Transacao();
+            user = new User();
+            ativo = new Ativo();
+
             transacao.setId(result.getLong("id"));
-            transacao.getAtivo().setId(result.getLong("idAtivo"));
-            transacao.getUser().setId(result.getLong("idUser"));
+            user.setId(result.getLong("idUser"));
+            transacao.setUser(user);
+
+            ativo.setId(result.getLong("idAtivo"));
+            transacao.setAtivo(ativo);
             transacao.setValor(result.getBigDecimal("valor"));
             Date dia = result.getDate("dia");
             transacao.setData(dia.toInstant().atZone( ZoneId.systemDefault() ).toLocalDate());
